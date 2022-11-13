@@ -2,13 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../types';
 
-export interface ProductState {
+export interface CartState {
     products: Product[];
 }
 
-const initialState: ProductState = {
+const initialState: CartState = {
     products: [],
 };
+
+function removeObjectWithId(arr: Array<Product>, tail: string) {
+    const objWithIdIndex = arr.findIndex((obj) => obj.tail === tail);
+    arr.splice(objWithIdIndex, 1);
+
+    return arr;
+}
 
 export const cartSlice = createSlice({
     name: 'cart',
@@ -18,7 +25,7 @@ export const cartSlice = createSlice({
             state.products.push(action.payload);
         },
         removeFromCart: (state, action: PayloadAction<string>) => {
-            state.products = state.products.filter((product) => product.tail !== action.payload);
+            state.products = removeObjectWithId(state.products, action.payload);
         },
     },
 });
