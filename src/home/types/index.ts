@@ -15,3 +15,10 @@ export interface Product {
 export interface Products {
     products: Product[];
 }
+
+export type ToggleProps = {
+    quantity: number;
+    add: () => void;
+    remove: () => void;
+    isInCart: boolean;
+};
