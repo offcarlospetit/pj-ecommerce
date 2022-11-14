@@ -13,7 +13,7 @@ import {
 import productApi from "../home/api/Home";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import logger from 'redux-logger';
-import cartSlice from "../home/reducers/CartSlice";
+import cartSlice from "../cart/reducers/CartSlice";
 
 const persistConfig = {
     key: 'root',

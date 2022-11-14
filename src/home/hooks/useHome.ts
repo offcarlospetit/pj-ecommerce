@@ -1,10 +1,9 @@
-// hook for make animatons reusable
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetProductsQuery } from '.';
+import { addTocart, removeFromCart } from '../../cart/reducers/CartSlice';
 import { RootState } from '../../store';
 import { Product } from '../types';
-import { addTocart, removeFromCart } from '../reducers/CartSlice';
 
 const useHome = () => {
     const { data, isLoading, isError, isSuccess } = useGetProductsQuery({});
