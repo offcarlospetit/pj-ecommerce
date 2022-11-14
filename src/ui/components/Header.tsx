@@ -19,6 +19,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {CartStackParamList} from '../../cart';
 import {RootNavigationParamList} from '../../navigation/RootNavigation';
 import {DetailStackParamList} from '../../home/navigation/DetailStack';
+import {TOP, TOP_VALUE} from '../../cart/constants';
 
 type NavigationProps = CompositeNavigationProp<
   BottomTabNavigationProp<TabParamList, 'HomeTab'>,
@@ -50,27 +51,28 @@ const Header: FC<Props> = ({
   animated = true,
 }) => {
   const {top} = useSafeAreaInsets();
+  const MARGIN_TOP = top !== 0 ? top : TOP_VALUE;
   const navigation = useNavigation<NavigationProps>();
   const cartState = useSelector((state: RootState) => state.cart);
   const animated_header_bar = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.timing(animated_header_bar, {
-      toValue: top,
+      toValue: MARGIN_TOP,
       duration: 1000,
       easing: Easing.elastic(1),
       useNativeDriver: false,
     }).start();
   }, []);
   const interpolated_header_bar = animated_header_bar.interpolate({
-    inputRange: [0, top],
-    outputRange: [0, top - 10],
+    inputRange: [0, MARGIN_TOP],
+    outputRange: [0, MARGIN_TOP - 10],
   });
   return (
     <Animated.View
       style={[
         styles.container,
         {
-          height: animated ? animated_header_bar : top + 35,
+          height: animated ? animated_header_bar : MARGIN_TOP + TOP,
           transform: [{translateY: animated ? interpolated_header_bar : 0}],
         },
       ]}>

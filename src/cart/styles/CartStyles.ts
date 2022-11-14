@@ -42,7 +42,7 @@ export const CartStyles = StyleSheet.create({
     cartTotal: {
         bottom: 0,
         position: 'absolute',
-        height: height * 0.18,
+        height: "24%",
         backgroundColor: pallete.white,
         shadowColor: pallete.secondary,
         shadowOffset: {
@@ -91,5 +91,15 @@ export const CartStyles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         paddingHorizontal: 24,
+    },
+    textItem: {
+        fontSize: 14,
+        fontWeight: '400',
+        marginLeft: 8,
+    },
+    textItemPrice: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginLeft: 8,
     },
 });

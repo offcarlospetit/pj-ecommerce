@@ -12,6 +12,7 @@ import transformPrice from '../../utils';
 import Footer from '../components/Footer';
 import ToggleButtons from '../components/ToggleButtons';
 import Loader from '../components/Loader';
+import {TOP_VALUE} from '../../cart/constants';
 
 const Home: FC<HomeScreenNavigationProp> = ({navigation}) => {
   const {
@@ -24,6 +25,7 @@ const Home: FC<HomeScreenNavigationProp> = ({navigation}) => {
     isLoading,
   } = useHome();
   const {top} = useSafeAreaInsets();
+  const MARGIN_TOP = top !== 0 ? top : TOP_VALUE * 2;
 
   const footerRender = () => {
     return loading ? <Footer loading={loading} /> : null;
@@ -66,12 +68,11 @@ const Home: FC<HomeScreenNavigationProp> = ({navigation}) => {
       </TouchableScale>
     );
   };
-
   return (
     <Container>
       <StatusBar hidden />
       <Heaader title={S.Home.home} />
-      <View style={{marginTop: top}}>
+      <View style={{marginTop: MARGIN_TOP}}>
         {isLoading ? (
           <Loader loading={isLoading} />
         ) : (

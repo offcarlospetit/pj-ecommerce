@@ -5,7 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Container, Heaader} from '../../ui';
 import {NavigationProps} from '../navigation/types';
 import S from '../../i18n';
-import {FAKE_ADDRESS, TOP} from '../constants';
+import {FAKE_ADDRESS, TOP, TOP_VALUE} from '../constants';
 import transformPrice from '../../utils';
 import {CheckoutStyles as styles} from '../styles/CheckoutStyles';
 import useCart from '../hooks/useCart';
@@ -16,6 +16,7 @@ const Checkout: FC<Props> = ({}) => {
   const {cartState, totalPrice} = useCart();
   const navigation = useNavigation<NavigationProps>();
   const {top} = useSafeAreaInsets();
+  const MARGIN_TOP = top !== 0 ? top : TOP_VALUE;
 
   return (
     <Container>
@@ -26,7 +27,7 @@ const Checkout: FC<Props> = ({}) => {
         iconright={false}
       />
       <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
-        <View style={[styles.container, {top: top + TOP}]}>
+        <View style={[styles.container, {top: MARGIN_TOP + TOP}]}>
           <View style={styles.addressContainer}>
             <View style={styles.address}>
               <Text style={styles.cartTotalText}>{S.Checkout.address}</Text>

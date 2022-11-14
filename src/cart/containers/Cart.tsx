@@ -6,7 +6,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import EmptyCart from '../components/EmptyCart';
 import {NavigationProps} from '../navigation/types';
 import S from '../../i18n';
-import {TOP} from '../constants';
+import {TOP, TOP_VALUE} from '../constants';
 import {CartStyles as styles} from '../styles/CartStyles';
 import useCart from '../hooks/useCart';
 import transformPrice from '../../utils';
@@ -17,6 +17,7 @@ const Cart: FC<Props> = ({}) => {
   const navigation = useNavigation<NavigationProps>();
   const {top, bottom} = useSafeAreaInsets();
   const {totalPrice, cartState} = useCart();
+  const MARGIN_TOP = top !== 0 ? top : TOP_VALUE;
 
   const goToCheckout = () => {
     navigation.navigate('CartStack', {screen: 'Checkout'});
@@ -44,7 +45,7 @@ const Cart: FC<Props> = ({}) => {
         animated={false}
         iconright={false}
       />
-      <View style={[styles.cartItems, {top: top + TOP}]}>
+      <View style={[styles.cartItems, {top: MARGIN_TOP + TOP}]}>
         <Text style={styles.cartItemsText}>{S.Cart.cart}</Text>
         <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
           {cartState.products.map(item => {
@@ -56,10 +57,12 @@ const Cart: FC<Props> = ({}) => {
                   <Image source={{uri: item.image}} style={styles.image} />
                 </View>
                 <View style={styles.base}>
-                  <Text>{item.name}</Text>
+                  <Text style={styles.textItem}>{item.name}</Text>
                 </View>
                 <View>
-                  <Text>{transformPrice(item.price)}</Text>
+                  <Text style={styles.textItemPrice}>
+                    {transformPrice(item.price)}
+                  </Text>
                 </View>
               </View>
             );

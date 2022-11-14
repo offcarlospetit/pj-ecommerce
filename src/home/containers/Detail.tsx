@@ -8,6 +8,7 @@ import useHome from '../hooks/useHome';
 import BodyDetail from '../components/BodyDetail';
 import {DetailStyles as styles} from '../styles/DetailStyles';
 import {section_one, section_two} from '../constants';
+import {TOP, TOP_VALUE} from '../../cart/constants';
 
 const DetailContainer: FC<DetailNavigationProps> = ({navigation, route}) => {
   const {item} = route.params;
@@ -16,6 +17,7 @@ const DetailContainer: FC<DetailNavigationProps> = ({navigation, route}) => {
   const animated_section_two = useAnimation();
   const [_, setScrollY] = React.useState(0);
   const {top} = useSafeAreaInsets();
+  const MARGIN_TOP = top !== 0 ? top : TOP_VALUE;
 
   animated_section_two.addListener(({value}) => {
     setScrollY(value);
@@ -66,7 +68,7 @@ const DetailContainer: FC<DetailNavigationProps> = ({navigation, route}) => {
           <Image
             source={{uri: item.image}}
             blurRadius={0.5}
-            style={[styles.image, {top: top + 35}]}
+            style={[styles.image, {top: MARGIN_TOP + TOP}]}
           />
         </Animated.View>
         <Animated.View
