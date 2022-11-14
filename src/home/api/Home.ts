@@ -1,18 +1,16 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Product, Products } from '../types';
+import transformPrice from '../../utils';
+import { Product } from '../types';
 
 function getRandomIntInclusive() {
     const min_ = 10000;
     const max_ = 100000;
     let min = Math.ceil(min_);
     let max = Math.floor(max_);
-    const result = Math.floor(Math.random() * (max - min + 1) + min);
+    const result = Math.round((Math.random() * (max - min) + min) / 10) * 10;
     return {
-        formatPrice: new Intl.NumberFormat('es-CL', {
-            currency: 'CLP',
-            style: 'currency',
-        }).format(result).toString(), price: result
+        formatPrice: transformPrice(result), price: result
     };
 }
 
