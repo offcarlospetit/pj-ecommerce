@@ -8,10 +8,12 @@ function getRandomIntInclusive() {
     let min = Math.ceil(min_);
     let max = Math.floor(max_);
     const result = Math.floor(Math.random() * (max - min + 1) + min);
-    return new Intl.NumberFormat('es-CL', {
-        currency: 'CLP',
-        style: 'currency',
-    }).format(result).toString();
+    return {
+        formatPrice: new Intl.NumberFormat('es-CL', {
+            currency: 'CLP',
+            style: 'currency',
+        }).format(result).toString(), price: result
+    };
 }
 
 // Define a service using a base URL and expected endpoints
@@ -29,7 +31,8 @@ export const productApi = createApi({
                 const products = response.amiibo.map((product: Product) => {
                     return {
                         ...product,
-                        price: getRandomIntInclusive(),
+                        price: getRandomIntInclusive().price,
+                        formatPrice: getRandomIntInclusive().formatPrice
                     };
                 });
                 return { amiibo: products };
