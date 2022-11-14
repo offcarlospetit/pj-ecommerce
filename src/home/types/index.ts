@@ -9,7 +9,8 @@ export interface Product {
     release: Record<string, string>,
     tail: string;
     type: string;
-    price: string;
+    price: number;
+    formatPrice: string;
 }
 export interface Products {
     products: Product[];
