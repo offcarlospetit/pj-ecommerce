@@ -101,19 +101,7 @@ const Header: FC<Props> = ({
             />
           </View>
           {cartState.products.length > 0 && iconright && (
-            <View
-              style={{
-                position: 'absolute',
-                borderRadius: 15 / 2,
-                backgroundColor: pallete.primary,
-                padding: 3,
-                width: 15,
-                height: 15,
-                marginTop: 0,
-                alignSelf: 'flex-end',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+            <View style={styles.indicartorCart}>
               <Text style={{color: pallete.white, fontSize: 8}}>
                 {cartState.products.length}
               </Text>
@@ -149,5 +137,17 @@ const styles = StyleSheet.create({
   actions: {
     justifyContent: 'center',
     alignItems: 'flex-end',
+  },
+  indicartorCart: {
+    position: 'absolute',
+    borderRadius: 15 / 2,
+    backgroundColor: pallete.primary,
+    padding: 3,
+    width: 15,
+    height: 15,
+    marginTop: 0,
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
