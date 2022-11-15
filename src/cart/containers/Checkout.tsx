@@ -25,54 +25,60 @@ const Checkout: FC<Props> = ({}) => {
         iconleft
         animated={false}
         iconright={false}
+        backgroundColor="defaultBackground"
       />
-      <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
-        <View style={[styles.container, {top: MARGIN_TOP + TOP}]}>
-          <View style={styles.addressContainer}>
-            <View style={styles.address}>
-              <Text style={styles.cartTotalText}>{S.Checkout.address}</Text>
-            </View>
-            <View style={styles.addressLine}>
-              <View style={styles.base}>
-                <Text style={styles.totalText}>{FAKE_ADDRESS}</Text>
+      <View style={styles.containerScrollView}>
+        <ScrollView
+          contentContainerStyle={styles.containerStyle}
+          nestedScrollEnabled
+          showsVerticalScrollIndicator={false}>
+          <View style={[styles.container, {top: MARGIN_TOP + TOP}]}>
+            <View style={styles.addressContainer}>
+              <View style={styles.address}>
+                <Text style={styles.cartTotalText}>{S.Checkout.address}</Text>
               </View>
-            </View>
-          </View>
-          <View style={[styles.cartItems]}>
-            <Text style={styles.cartItemsText}>{S.Checkout.cart_resume}</Text>
-            {cartState.products.map(item => {
-              return (
-                <View
-                  style={styles.productsContainer}
-                  key={item.tail + Math.random()}>
-                  <View>
-                    <Image source={{uri: item.image}} style={styles.image} />
-                  </View>
-                  <View style={styles.base}>
-                    <Text>{item.name}</Text>
-                  </View>
-                  <View>
-                    <Text>{transformPrice(item.price)}</Text>
-                  </View>
+              <View style={styles.addressLine}>
+                <View style={styles.base}>
+                  <Text style={styles.totalText}>{FAKE_ADDRESS}</Text>
                 </View>
-              );
-            })}
-          </View>
-          <View style={styles.resumeContainer}>
-            <View style={styles.resumeTitle}>
-              <Text style={styles.cartTotalText}>{S.Cart.shop_resume}</Text>
-            </View>
-            <View style={styles.resumeTotalContainer}>
-              <View style={styles.base}>
-                <Text style={styles.totalText}>{S.Cart.total}</Text>
-              </View>
-              <View style={styles.totalPrice}>
-                <Text style={styles.cartItemsText}>{totalPrice}</Text>
               </View>
             </View>
+            <View style={[styles.cartItems]}>
+              <Text style={styles.cartItemsText}>{S.Checkout.cart_resume}</Text>
+              {cartState.products.map(item => {
+                return (
+                  <View
+                    style={styles.productsContainer}
+                    key={item.tail + Math.random()}>
+                    <View>
+                      <Image source={{uri: item.image}} style={styles.image} />
+                    </View>
+                    <View style={styles.base}>
+                      <Text>{item.name}</Text>
+                    </View>
+                    <View>
+                      <Text>{transformPrice(item.price)}</Text>
+                    </View>
+                  </View>
+                );
+              })}
+            </View>
+            <View style={styles.resumeContainer}>
+              <View style={styles.resumeTitle}>
+                <Text style={styles.cartTotalText}>{S.Cart.shop_resume}</Text>
+              </View>
+              <View style={styles.resumeTotalContainer}>
+                <View style={styles.base}>
+                  <Text style={styles.totalText}>{S.Cart.total}</Text>
+                </View>
+                <View style={styles.totalPrice}>
+                  <Text style={styles.cartItemsText}>{totalPrice}</Text>
+                </View>
+              </View>
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
       <View style={styles.cartTotal}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity

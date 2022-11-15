@@ -22,7 +22,12 @@ const Receipt: FC<Props> = ({}) => {
   };
   return (
     <Container>
-      <Heaader title={S.Receipt.receipt} animated={false} iconright={false} />
+      <Heaader
+        backgroundColor="defaultBackground"
+        title={S.Receipt.receipt}
+        animated={false}
+        iconright={false}
+      />
       <View style={[styles.container, {marginTop: MARGIN_TOP + TOP}]}>
         <ScrollView nestedScrollEnabled>
           <View style={styles.sectionOneContainer}>

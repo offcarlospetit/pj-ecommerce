@@ -44,30 +44,36 @@ const Cart: FC<Props> = ({}) => {
         iconleft
         animated={false}
         iconright={false}
+        backgroundColor="defaultBackground"
       />
       <View style={[styles.cartItems, {top: MARGIN_TOP + TOP}]}>
         <Text style={styles.cartItemsText}>{S.Cart.cart}</Text>
-        <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
-          {cartState.products.map(item => {
-            return (
-              <View
-                style={[styles.cartItemsView]}
-                key={item.tail + Math.random()}>
-                <View style={styles.imageContainer}>
-                  <Image source={{uri: item.image}} style={styles.image} />
+        <View style={styles.containerScrollView}>
+          <ScrollView
+            contentContainerStyle={styles.containerStyle}
+            nestedScrollEnabled
+            showsVerticalScrollIndicator={false}>
+            {cartState.products.map(item => {
+              return (
+                <View
+                  style={[styles.cartItemsView]}
+                  key={item.tail + Math.random()}>
+                  <View style={styles.imageContainer}>
+                    <Image source={{uri: item.image}} style={styles.image} />
+                  </View>
+                  <View style={styles.base}>
+                    <Text style={styles.textItem}>{item.name}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.textItemPrice}>
+                      {transformPrice(item.price)}
+                    </Text>
+                  </View>
                 </View>
-                <View style={styles.base}>
-                  <Text style={styles.textItem}>{item.name}</Text>
-                </View>
-                <View>
-                  <Text style={styles.textItemPrice}>
-                    {transformPrice(item.price)}
-                  </Text>
-                </View>
-              </View>
-            );
-          })}
-        </ScrollView>
+              );
+            })}
+          </ScrollView>
+        </View>
       </View>
 
       <View style={styles.cartTotal}>

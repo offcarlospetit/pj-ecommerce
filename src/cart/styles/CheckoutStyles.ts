@@ -109,4 +109,12 @@ export const CheckoutStyles = StyleSheet.create({
     },
     resumeTotalContainer: { flex: 1, flexDirection: 'row' },
     totalPrice: { flex: 1, alignItems: 'flex-end' },
+    containerScrollView: {
+        flex: 1,
+        paddingBottom: '25%'
+    },
+    containerStyle: {
+        flexGrow: 1,
+        paddingBottom: '25%'
+    }
 });

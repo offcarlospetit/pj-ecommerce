@@ -21,6 +21,8 @@ import {RootNavigationParamList} from '../../navigation/RootNavigation';
 import {DetailStackParamList} from '../../home/navigation/DetailStack';
 import {TOP, TOP_VALUE} from '../../cart/constants';
 
+import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
+
 type NavigationProps = CompositeNavigationProp<
   BottomTabNavigationProp<TabParamList, 'HomeTab'>,
   CompositeNavigationProp<
@@ -41,6 +43,7 @@ interface Props {
   iconleft?: boolean;
   iconright?: boolean;
   animated?: boolean;
+  backgroundColor?: 'transparent' | 'defaultBackground';
 }
 
 const Header: FC<Props> = ({
@@ -49,12 +52,15 @@ const Header: FC<Props> = ({
   iconleft = false,
   iconright = true,
   animated = true,
+  backgroundColor = 'transparent',
 }) => {
   const {top} = useSafeAreaInsets();
   const MARGIN_TOP = top !== 0 ? top : TOP_VALUE;
   const navigation = useNavigation<NavigationProps>();
   const cartState = useSelector((state: RootState) => state.cart);
   const animated_header_bar = useRef(new Animated.Value(0)).current;
+  const {colors} = DefaultTheme;
+  console.log(colors.background);
   useEffect(() => {
     Animated.timing(animated_header_bar, {
       toValue: MARGIN_TOP,
@@ -74,6 +80,7 @@ const Header: FC<Props> = ({
         {
           height: animated ? animated_header_bar : MARGIN_TOP + TOP,
           transform: [{translateY: animated ? interpolated_header_bar : 0}],
+          backgroundColor: pallete[backgroundColor],
         },
       ]}>
       <View style={styles.goBack}>

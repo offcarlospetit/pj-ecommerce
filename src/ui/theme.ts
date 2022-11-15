@@ -22,4 +22,5 @@ export const pallete = {
     black50: 'rgba(0,0,0,0.5)',
     white: '#FFF',
     transparent: 'transparent',
+    defaultBackground: 'rgb(242, 242, 242)',
 };

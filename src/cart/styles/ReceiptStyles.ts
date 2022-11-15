@@ -82,4 +82,12 @@ export const ReceiptStyles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
     },
+    containerScrollView: {
+        flex: 1,
+        paddingBottom: '35%'
+    },
+    containerStyle: {
+        flexGrow: 1,
+        paddingBottom: '35%'
+    }
 });
