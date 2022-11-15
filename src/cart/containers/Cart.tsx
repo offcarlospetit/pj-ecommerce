@@ -27,7 +27,7 @@ const Cart: FC<Props> = ({}) => {
     return (
       <Container>
         <Heaader
-          title="Tu carrito"
+          title={S.Cart.your_cart}
           iconleft
           animated={false}
           iconright={false}
