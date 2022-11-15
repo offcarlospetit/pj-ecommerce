@@ -105,5 +105,13 @@ export const CartStyles = StyleSheet.create({
         padding: 10,
         borderWidth: 1,
         borderColor: pallete.third,
+    },
+    containerScrollView: {
+        flex: 1,
+        paddingBottom: '35%'
+    },
+    containerStyle: {
+        flexGrow: 1,
+        paddingBottom: '35%'
     }
 });
