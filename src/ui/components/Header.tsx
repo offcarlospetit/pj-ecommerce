@@ -7,35 +7,14 @@ import {
   View,
 } from 'react-native';
 import React, {FC, useEffect, useRef} from 'react';
-import {useNavigation, CompositeNavigationProp} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {pallete} from '../theme';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store';
-import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
-import {TabParamList} from '../../navigation/TabNavigation';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {CartStackParamList} from '../../cart';
-import {RootNavigationParamList} from '../../navigation/RootNavigation';
-import {DetailStackParamList} from '../../home/navigation/DetailStack';
 import {TOP, TOP_VALUE} from '../../cart/constants';
-
-import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
-
-type NavigationProps = CompositeNavigationProp<
-  BottomTabNavigationProp<TabParamList, 'HomeTab'>,
-  CompositeNavigationProp<
-    CompositeNavigationProp<
-      NativeStackNavigationProp<DetailStackParamList, 'Detail'>,
-      NativeStackNavigationProp<RootNavigationParamList, 'DetailStack'>
-    >,
-    CompositeNavigationProp<
-      NativeStackNavigationProp<CartStackParamList, 'Cart'>,
-      NativeStackNavigationProp<RootNavigationParamList, 'CartStack'>
-    >
-  >
->;
+import {NavigationProps} from '../../cart/navigation/types';
 
 interface Props {
   title?: string;
@@ -59,8 +38,7 @@ const Header: FC<Props> = ({
   const navigation = useNavigation<NavigationProps>();
   const cartState = useSelector((state: RootState) => state.cart);
   const animated_header_bar = useRef(new Animated.Value(0)).current;
-  const {colors} = DefaultTheme;
-  console.log(colors.background);
+
   useEffect(() => {
     Animated.timing(animated_header_bar, {
       toValue: MARGIN_TOP,
