@@ -29,6 +29,7 @@ const middlewares = getDefaultMiddleware({
     immutableCheck: false,
     serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        warnAfter: 128,
     }
 });
 

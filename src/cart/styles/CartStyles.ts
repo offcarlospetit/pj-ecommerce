@@ -65,7 +65,6 @@ export const CartStyles = StyleSheet.create({
         width: 50,
         height: 50,
         resizeMode: 'contain',
-        borderWidth: 1,
     },
     totalText: {
         fontSize: 12,
@@ -102,4 +101,9 @@ export const CartStyles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: 8,
     },
+    imageContainer: {
+        padding: 10,
+        borderWidth: 1,
+        borderColor: pallete.third,
+    }
 });

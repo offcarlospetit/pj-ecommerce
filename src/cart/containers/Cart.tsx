@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import {Container, Heaader} from '../../ui';
+import {Container, Divider, Heaader, pallete} from '../../ui';
 import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import EmptyCart from '../components/EmptyCart';
@@ -51,9 +51,9 @@ const Cart: FC<Props> = ({}) => {
           {cartState.products.map(item => {
             return (
               <View
-                style={styles.cartItemsView}
+                style={[styles.cartItemsView]}
                 key={item.tail + Math.random()}>
-                <View>
+                <View style={styles.imageContainer}>
                   <Image source={{uri: item.image}} style={styles.image} />
                 </View>
                 <View style={styles.base}>
@@ -69,6 +69,7 @@ const Cart: FC<Props> = ({}) => {
           })}
         </ScrollView>
       </View>
+
       <View style={styles.cartTotal}>
         <View style={styles.resumeView}>
           <Text style={styles.cartTotalText}>{S.Cart.shop_resume}</Text>
